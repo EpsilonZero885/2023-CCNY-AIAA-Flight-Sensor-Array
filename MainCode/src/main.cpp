@@ -16,6 +16,9 @@ btw don't forget to edit the readme.txt!
 bfs::Mpu9250 imu;
 const int chipSelect = 10; //IMU CS Pin to Arduino Pin10
 
+/* Global Variables for MPX5010DP Analog Airspeed Sensor */
+const int mpx5010dp_Pin = A0;
+
 /* Global Variables for Iterative File Naming */
 String file;
 
@@ -38,6 +41,18 @@ int THROValue, AILEValue, ELEVValue, RUDDValue, AUX1Value;
 /* Global Variables for BME280 */
 #define SEALEVELPRESSURE_HPA (1020.6575) //UNITS hPa --> Default = 1013.25hPa -->Change this to known data!!!   Change this to known data!!!    Change this to known data!!!    Change this to known data!!!    Change this to known data!!!
 Adafruit_BME280 bme; // Naming the library class "bme"? Idrk
+
+/* Function to read airspeed (mph) from MPX5010DP */
+float airSpeedMPX5010DP() {
+  return 2.23694*sqrt(18.024409*analogRead(mpx5010dp_Pin)-738.279808); //Transfer function from datasheet without +- error term, modified for velocity output in mph
+} //end airSpeedMPX5010DP()
+
+/* Function to convert the analog reading from the MPX5010DP to Volts*/
+/* Use this for initial testing, but the function above incorporates this unit conversion */
+/*Delete when testing is successful and complete*/
+double voltageRead() {
+  return analogRead(mpx5010dp_Pin)*5/1023;
+} //end voltageRead()
 
 /* Function used for reading gear pwm signal with a hardware interrupt */
 void PulseTimer(){
@@ -175,15 +190,17 @@ void loop() {
       dataString+=("\t");
       dataString+=String(bme.readAltitude(SEALEVELPRESSURE_HPA)); //Column 12, Altitude (m)
       dataString+=("\t");
-      dataString+=THROValue; //Column 13, Throttle pwm, 0-100
+      dataString+=String(airSpeedMPX5010DP()); //Column 13, Airspeed, mph
       dataString+=("\t");
-      dataString+=AILEValue; //Column 14, R Aileron pwm, -100-100
+      dataString+=THROValue; //Column 14, Throttle pwm, 0-100
       dataString+=("\t");
-      dataString+=AILEValue; //Column 15, L Aileron pwm, -100-100
+      dataString+=AILEValue; //Column 15, R Aileron pwm, -100-100
       dataString+=("\t");
-      dataString+=RUDDValue; //Column 16, Rudder pwm, -100-100
+      dataString+=AILEValue; //Column 16, L Aileron pwm, -100-100
       dataString+=("\t");
-      dataString+=ELEVValue; //Column 17, Elevator pwm, -100-100
+      dataString+=RUDDValue; //Column 17, Rudder pwm, -100-100
+      dataString+=("\t");
+      dataString+=ELEVValue; //Column 18, Elevator pwm, -100-100
       Serial.println(dataString); // For Testing
       
       /* Write datastring to SD card: */
