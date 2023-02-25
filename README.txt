@@ -4,6 +4,9 @@ Description:
 Goal: 
 	Record sensor data and pwm motor inputs during flight testing for post-processing in MATLAB
 
+Github:
+	https://github.com/EpsilonZero885/2023-CCNY-AIAA-Flight-Sensor-Array.git
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Parts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Kyle's stuff:
 	Arduino Uno
