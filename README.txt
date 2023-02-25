@@ -1,12 +1,15 @@
+Description:
+	Development of an Arduino-based flight data recorder for use in the 2023 AIAA DBF competition by the CCNY AIAA chapter 
+
 Goal: 
-Setup IMU w microcontroller to record (and save to SD) data collected during flight testing for post-processing in MATLAB
+	Setup IMU w microcontroller to record (and save to SD) data collected during flight testing for post-processing in MATLAB
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Parts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Kyle's stuff:
 	Arduino Uno
 	Adafruit 5V Ready Micro-SD Breakout board+
-X	Adafruit Powerboost 1000C
-X	3.7V 1200mAh PKCELL LP503562 LiPo Battery
+	Adafruit Powerboost 1000C
+	3.7V 1200mAh PKCELL LP503562 LiPo Battery
 	16GB Micro-SD Card (w Adapter for plugging into cpu)
 	Misc M/F Dupont cables
 	MicroUSB Cable to charge battery
@@ -19,7 +22,7 @@ AIAA Club stuff:
 	Spektrum AR8000 X Receiver
 
 I need:
-X	USB-A to USB-B (connect powerboost to uno, only needed for flight-ready version)
+	USB-A to USB-B (connect powerboost to uno, only needed for flight-ready version)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thoughts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
