@@ -23,6 +23,7 @@ AIAA Club stuff:
 	MPU9250 IMU
 	Spektrum DX6i Transmitter
 	Spektrum AR8000 X Receiver
+	MPX5010DP Analog Differential Pressure Sensor
 
 I need:
 	USB-A to USB-B (connect powerboost to uno, only needed for flight-ready version)
@@ -81,9 +82,14 @@ Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout
 	A4 (SDA)	SDI
 	A5 (SCL)	SCK
 
-
-
-
+MPX5010DP Analog Differential Pressure Sensor (Pin with a Notch is Pin1)
+	Arduino		MPX5010DP
+	A0		1
+	GND		2
+	5V		3
+	N/C		4
+	N/C		5
+	N/C		6
 
 As tested on my home psu, at 5V the SD+IMU+BME280+Uno draw ~80mA. At 1200mAh this testing apparatus can run for 15hours
 	This value jumps to about 130mA when the psu also supplies 5V to the receiver, about 9.23 hours at 1200mAh
@@ -125,6 +131,8 @@ v7: created protoboard to parallel out channels for THRO, AILE, ELEV, RUDD, and 
 	Switched pins 5 and 7, updated the code to reflect this
 	Per Michael's request, removed heading in degrees from printout. Instead printing uT values for each axis in individual columns 
 
+v8: Incorporating MPX5010DP analog pressure sensor using transfer function from data sheet.
+	Did not incorporate the +- error term of the transfer function. Check calibration upon delivery
 
 			~~~GENERAL NOTES~~~
 IMU script using "Bolder Flight Systems MPU9250 by Brian Taylor" Library
@@ -175,3 +183,7 @@ https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperat
 Reading PWM signals:
 https://www.theboredrobot.com/post/reading-values-from-an-rc-receiver-using-arduino - Used for GEAR Channel
 https://medium.com/@werneckpaiva/how-to-read-rc-receiver-signal-with-arduino-54e0447f6c3f - Used to read the other 5 channels
+
+MPX5010DP:
+https://www.nxp.com/docs/en/data-sheet/MPX5010.pdf
+https://docs.arduino.cc/built-in-examples/basics/ReadAnalogVoltage
