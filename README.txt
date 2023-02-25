@@ -2,7 +2,7 @@ Description:
 	Development of an Arduino-based flight data recorder for use in the 2023 AIAA DBF competition by the CCNY AIAA chapter 
 
 Goal: 
-	Setup IMU w microcontroller to record (and save to SD) data collected during flight testing for post-processing in MATLAB
+	Record sensor data and pwm motor inputs during flight testing for post-processing in MATLAB
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Parts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Kyle's stuff:
