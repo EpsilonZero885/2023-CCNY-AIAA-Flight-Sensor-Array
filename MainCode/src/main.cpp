@@ -3,7 +3,7 @@ ADD LICENSING, DATES, MY NAME, etc
 btw don't forget to edit the readme.txt!
 */
 
-/* Libraries */
+/* Include Libraries */
 #include <Arduino.h> //Include this to code from Platformio, not needed in Arduino IDE
 #include "mpu9250.h"
 #include <SD.h>
@@ -61,7 +61,7 @@ void PulseTimer(){
   if (CurrentTime > StartTime){
     gear = CurrentTime - StartTime;
     StartTime = CurrentTime;
-  } //endif
+  } //end if (CurrentTime > StartTime)
 } //end PulseTimer()
 
 /* Function used to read servo pwm without using interrupts */
@@ -86,18 +86,18 @@ void setup() {
   if (!imu.Begin()) { //Initialize IMU
     Serial.println("Error initializing communication with IMU");
     while(1) {}
-  }//endif
+  } //end if (!imu.Begin())
 
   //Set the sample rate divider:
   if (!imu.ConfigSrd(19)) {
     Serial.println("Error configured SRD");
     while(1) {}
-  }//endif
+  } //end if (!imu.ConfigSrd(19))
   
   /* Setup for PWM */
   //Set Pin 2 to read PWM from gear channel of the receiver:
   pinMode(GEARPIN, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(GEARPIN),PulseTimer,CHANGE);
+  attachInterrupt(digitalPinToInterrupt(GEARPIN),PulseTimer,CHANGE); //Attach interrupt to GEARPIN
   //Set pins for reading servo pwm:
   pinMode(THRO, INPUT_PULLUP);
   pinMode(AILE, INPUT_PULLUP);
@@ -114,50 +114,56 @@ void setup() {
   if (!SD.begin(chipSelect)) {
     Serial.println("Card failed, or not present");
     while (1);// Pause the script here
-  }//endif
-  Serial.println("card initialized.");
+  } //end if (!SD.begin(chipSelect))
+  Serial.println("card initialized."); //Card is initialized
 
   /* Give a prompt to the user */
-  Serial.println();
   Serial.println("Waiting for PWM signal from GEAR Channel");
 
 } //end setup()
 
 /* Main Loop */
 void loop() {
-  if (tf==1) {
-    /* Read the SD for existing filenames; increment files for different test cases */
-    String fileTitle = "data";
-    String fileType = ".txt";
-    for (int fileCounter = 0; fileCounter<10000; fileCounter++) {
-        String fileName = fileTitle + String(fileCounter)+fileType;
-        File dataFile = SD.open(fileName);
-        if (!dataFile.available()) { //Returns TRUE if the file has data, FALSE if the file is empty
-          file=fileName;
-          break;
-        } //end if !dataFile.available
-        dataFile.close(); //Always close after reading/writing
-    } //end for fileCounter=0  
-  } //end if tf==1
+  /* Read the SD for existing filenames; increment files for different test cases: */
+  if (tf==1) { //True if the switch state has changed to ON, False if the switch state has not changed since the last loop (Check this in later versions)
+    String fileTitle = "data"; //filename, arbitrary
+    String fileType = ".txt"; //Change this to .csv for excel
 
-   if (gear < 2000) {
-     gearState = gear;
+    /* Check whether files already have data. If yes, ignore and create a new file with an iterative name*/
+    for (int fileCounter = 0; fileCounter<10000; fileCounter++) {
+      String fileName = fileTitle + String(fileCounter)+fileType;
+      File dataFile = SD.open(fileName);
+      if (!dataFile.available()) { //Returns TRUE if the file has data, FALSE if the file is empty
+        file=fileName;
+        break;
+      } //end if (!dataFile.available)
+      dataFile.close(); //Always close after reading/writing
+    } //end for (int fileCounter = 0; fileCounter<10000; fileCounter++)  
+  } //end if (tf==1)
+
+  /* Update gearState */
+  if (gear < 2000) { //Always TRUE
+    gearState = gear; //Update gearState
 //     Serial.println(gearState); //For testing
-   } //end if gear<2000
+  } //end if (gear<2000)
   
   while (gearState > 1800) {
-    tf=0;
-    if (gear < 2000) {
-      gearState = gear;
-    } //end if gear < 2000
+    tf=0; //Prevent a new file from being created until the switch is turned off and back on
+
+    /* Update gearState */
+    if (gear < 2000) { //Always TRUE
+      gearState = gear; //Update gearState
+    } //end if (gear < 2000)
 //    Serial.println(gearState); //for testing
 
-    if (imu.Read()) {
-      /* Reading servo pwm inputs */
+    /* Check for new imu data: */
+    if (imu.Read()) { //True if the imu records new data, false if the imu is offline
+      /* Can I move these to global vars of type int8_t?*/
       int minLimitThro = 0; //Minmax for throttle is 0-100
       int maxLimitThro=100;
       int minLimit = -100; //Minmax for servos is -100-100
       int maxLimit=100;
+      /* Read the servo pwm inputs. Each read causes a ~2-3ms delay in the code, by the nature of the pulseIn() function used in the readChannel() function */
       THROValue = readChannel(THRO, minLimitThro, maxLimitThro, 0);
       AILEValue = readChannel(AILE, minLimit, maxLimit, 0);
       ELEVValue = readChannel(ELEV, minLimit, maxLimit, 0);
@@ -208,7 +214,7 @@ void loop() {
       //If it's available, write to it:
 //      Serial.print("Trying to write to "); //For testing
 //      Serial.println(file); //For testing
-      if (dataFile) {
+      if (dataFile) { //True if the file is available, false if the file is not available
          /* Serial Prints for Testing: */
 //        Serial.print("Currently Writing to ");
 //        Serial.println(file);
@@ -218,12 +224,12 @@ void loop() {
       }//end if dataFile
 
       /* Print Error if the SD isnt available: */
-      else {
+      else { //If the file is not available
           Serial.println(dataFile);
           Serial.print("error opening ");
           Serial.println(file);
       }//end else
-    } //endif imu.Read
-  } //end while Gearstate
+    } //endif (imu.Read())
+  } //end while (gearState > 1800)
   tf=1; //Write a new file once the switch is turned back off
-}//end void loop
+} //end void loop()
