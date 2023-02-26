@@ -131,8 +131,8 @@ void setup() {
 void loop() {
   /* Read the SD for existing filenames; increment files for different test cases: */
   if (tf==1) { //True if the switch state has changed to ON, False if the switch state has not changed since the last loop (Check this in later versions)
-    String fileTitle = "data"; //filename, arbitrary
-    String fileType = ".txt"; //Change this to .csv for excel
+    const String fileTitle = "data"; //filename, arbitrary
+    const String fileType = ".txt"; //Change this to .csv for excel
 
     /* Check whether files already have data. If yes, ignore and create a new file with an iterative name*/
     for (int fileCounter = 0; fileCounter<10000; fileCounter++) {
