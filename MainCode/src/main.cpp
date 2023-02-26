@@ -37,6 +37,11 @@ bool tf = 1;
 #define RUDD 6 //Rudder
 #define AUX1 5 //Aux1(Aileron L)
 int THROValue, AILEValue, ELEVValue, RUDDValue, AUX1Value;
+//Variables for mapping the pwm to the correct range:
+const int8_t minLimitThro = 0; //Minmax for throttle is 0-100
+const int8_t maxLimitThro=100;
+const int8_t minLimit = -100; //Minmax for servos is -100-100
+const int8_t maxLimit=100;
 
 /* Global Variables for BME280 */
 #define SEALEVELPRESSURE_HPA (1020.6575) //UNITS hPa --> Default = 1013.25hPa -->Change this to known data!!!   Change this to known data!!!    Change this to known data!!!    Change this to known data!!!    Change this to known data!!!
@@ -158,11 +163,6 @@ void loop() {
 
     /* Check for new imu data: */
     if (imu.Read()) { //True if the imu records new data, false if the imu is offline
-      /* Can I move these to global vars of type int8_t?*/
-      int minLimitThro = 0; //Minmax for throttle is 0-100
-      int maxLimitThro=100;
-      int minLimit = -100; //Minmax for servos is -100-100
-      int maxLimit=100;
       /* Read the servo pwm inputs. Each read causes a ~2-3ms delay in the code, by the nature of the pulseIn() function used in the readChannel() function */
       THROValue = readChannel(THRO, minLimitThro, maxLimitThro, 0);
       AILEValue = readChannel(AILE, minLimit, maxLimit, 0);
