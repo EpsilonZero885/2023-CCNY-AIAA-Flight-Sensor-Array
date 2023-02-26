@@ -1,3 +1,6 @@
+Contact:	Kyle Rucker 
+		krucker000@citymail.cuny.edu
+
 Description:
 	Development of an Arduino-based flight data recorder for use in the 2023 AIAA DBF competition by the CCNY AIAA chapter 
 
