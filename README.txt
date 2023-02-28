@@ -43,12 +43,8 @@ NOTE: I get bad results when the Arduino and the receiver are powered over seper
 	If I cannot fix this, this means we need to supply 5.5V BEC voltage to the arduino/sensors. This is not the end of the world.
 	Ideally, I would like to power the arduino+sensors off one LiPo, and the receiver/servos over the BEC line from the ESC, powered from a seperate battery. 
 		This would allow us to measure battery life w.out considering the arduino+sensors. How to do this?
-			Try: Common the ground! Marty says it has worked for him
-			Try: Meter the voltage between PWM and Arduino Ground when the two systems are seperately powered?
-			Try: Add 1N4XXX diode to pwm line? Worth a shot
-			Try: Replacing pinMode(PIN, INPUT_PULLUP) with just regular input?
-			Try: A resistor maybe? Idrk
-			Try: Idk, add something
+			Try: Common the ground! 
+				This worked! Update the Protoboard to add another GND breakout which will run to the Arduino
  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pinouts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 IMU (I2C com)
