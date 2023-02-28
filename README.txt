@@ -27,6 +27,7 @@ AIAA Club stuff:
 	Spektrum DX6i Transmitter
 	Spektrum AR8000 X Receiver
 	MPX5010DP Analog Differential Pressure Sensor
+	4x Parallax digital Standard Servo #900-00005
 
 I need:
 	USB-A to USB-B (connect powerboost to uno, only needed for flight-ready version)
@@ -44,7 +45,7 @@ NOTE: I get bad results when the Arduino and the receiver are powered over seper
 	Ideally, I would like to power the arduino+sensors off one LiPo, and the receiver/servos over the BEC line from the ESC, powered from a seperate battery. 
 		This would allow us to measure battery life w.out considering the arduino+sensors. How to do this?
 			Try: Common the ground! 
-				This worked! Update the Protoboard to add another GND breakout which will run to the Arduino
+				This worked! Updated the Protoboard to add another GND breakout which will run to the Arduino
  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pinouts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 IMU (I2C com)
