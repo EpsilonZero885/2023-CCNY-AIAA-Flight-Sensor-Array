@@ -21,6 +21,7 @@ Kyle's stuff:
 	MicroUSB Cable to charge battery
 	Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout
 	Protoboard, misc wire
+	Very tiny switch
 
 AIAA Club stuff:
 	MPU9250 IMU
@@ -90,6 +91,13 @@ MPX5010DP Analog Differential Pressure Sensor (Pin with a Notch is Pin1)
 	N/C		4
 	N/C		5
 	N/C		6
+
+Adafruit Powerboost 1000C
+	Powerboost	Arduino (and basically all the other sensors too tbh)
+	5V		5V
+	GND		GND
+	ENA		Connected to tiny switch, switches between N/C and common GND
+
 
 As tested on my home psu, at 5V the SD+IMU+BME280+Uno draw ~80mA. At 1200mAh this testing apparatus can run for 15hours
 	This value jumps to about 130mA when the psu also supplies 5V to the receiver, about 9.23 hours at 1200mAh
