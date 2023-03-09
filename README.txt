@@ -10,6 +10,9 @@ Goal:
 Github:
 	https://github.com/EpsilonZero885/2023-CCNY-AIAA-Flight-Sensor-Array.git
 
+3D Models used for mounting:
+	https://www.thingiverse.com/thing:5900534
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Parts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Kyle's stuff:
 	Arduino Uno
