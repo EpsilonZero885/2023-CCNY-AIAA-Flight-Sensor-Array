@@ -16,6 +16,7 @@ Github:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Parts ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Kyle's stuff:
 	Arduino Uno
+	Arduino Uno Protoshield
 	Adafruit 5V Ready Micro-SD Breakout board+
 	Adafruit Powerboost 1000C
 	3.7V 1200mAh PKCELL LP503562 LiPo Battery
