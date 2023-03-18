@@ -25,14 +25,16 @@ Kyle's stuff:
 	MicroUSB Cable to charge battery
 	Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout
 	Protoboard, misc wire
-	Very tiny switch
+	Very tiny switch DPST
+	MPX5010DP Analog Differential Pressure Sensor
+	
 
 AIAA Club stuff:
 	MPU9250 IMU
 	Spektrum DX6i Transmitter
 	Spektrum AR8000 X Receiver
-	MPX5010DP Analog Differential Pressure Sensor
-	4x Parallax digital Standard Servo #900-00005
+	3x Parallax digital Standard Servo #900-00005
+	2x 9g Micro Servo
 
 I need:
 	USB-A to USB-B (connect powerboost to uno, only needed for flight-ready version)
@@ -89,7 +91,7 @@ Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout
 
 MPX5010DP Analog Differential Pressure Sensor (Pin with a Notch is Pin1)
 	Arduino		MPX5010DP
-	A0		1
+	A3		1
 	GND		2
 	5V		3
 	N/C		4

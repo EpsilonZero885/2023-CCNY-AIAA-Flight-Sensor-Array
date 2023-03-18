@@ -17,7 +17,7 @@ bfs::Mpu9250 imu;
 const int chipSelect = 10; //IMU CS Pin to Arduino Pin10
 
 /* Global Variables for MPX5010DP Analog Airspeed Sensor */
-const int mpx5010dp_Pin = A0;
+const int mpx5010dp_Pin = A3;
 
 /* Global Variables for Iterative File Naming */
 String file;
