@@ -145,6 +145,10 @@ v7: created protoboard to parallel out channels for THRO, AILE, ELEV, RUDD, and 
 
 v8: Incorporating MPX5010DP analog pressure sensor using transfer function from data sheet.
 	Did not incorporate the +- error term of the transfer function. Check calibration upon delivery
+	The sensor works as expected! 
+		Use the port closer to PIN1 as the static port
+	Reading ~16mph at rest with no pitot tube. Attach pitot tube and test again. 
+	Maybe just record voltage value, perform transfer function calculations in post-processing?
 
 			~~~GENERAL NOTES~~~
 IMU script using "Bolder Flight Systems MPU9250 by Brian Taylor" Library
