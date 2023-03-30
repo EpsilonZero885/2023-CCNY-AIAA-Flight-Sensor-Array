@@ -179,6 +179,13 @@ The BME280 can measure humidity, temperature, and pressure.
 I2C Sensor Addresses:
 	IMU	0x68
 	BME280	0x77
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Weights ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sensor Array with enclosure and all cables: Overloaded my small scale, measure on larger scale
+Parallax Servo: 40.17g each
+9g Micro Servo: 10.61g each
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Links ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Arduino Uno:
 https://docs.arduino.cc/hardware/uno-rev3
