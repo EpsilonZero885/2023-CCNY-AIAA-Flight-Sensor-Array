@@ -49,7 +49,30 @@ Adafruit_BME280 bme; // Naming the library class "bme"? Idrk
 
 /* Function to read airspeed (mph) from MPX5010DP */
 float airSpeedMPX5010DP() {
-  return 2.23694*sqrt(18.024409*analogRead(mpx5010dp_Pin)-738.279808); //Transfer function from datasheet without +- error term, modified for velocity output in mph
+  const float vs = 5; //Supply voltage in V
+  const float vOffset = 0.2; //Offset voltage in V
+  float pressure; //Pressure in kPa
+  float vMS; //Velocity in m/s
+  float vMPH; //Velocity in mph
+  float rho = 1.225; //Density of air in kg/m^3
+  float voltage; //Voltage in V
+  float val; //Analog value from MPX5010DP
+
+  /* Read MPX5010DP Analog Output */
+  val=analogRead(mpx5010dp_Pin);
+  /* Convert Analog Values to Voltages in V */
+  voltage = val * 5 / 1023-vOffset;
+  /* Convert Voltage to Pressure in kPa */
+  pressure = (1 / 0.09) * (((voltage) / vs) - 0.04); //Transfer function from datasheet))
+  /* Convert Pressure to Airspeed in m/s */
+  if (pressure < 0) {
+    pressure = 0;
+  } //end if (pressure < 0)
+  vMS = sqrt(2*pressure*1000/rho);
+  /* Convert Airspeed in m/s to Airspeed in mph */
+  vMPH = vMS*2.23694;
+ 
+  return vMPH; //Transfer function from datasheet without +- error term, modified for velocity output in mph} //end airSpeedMPX5010DP()
 } //end airSpeedMPX5010DP()
 
 /* Function to convert the analog reading from the MPX5010DP to Volts*/
